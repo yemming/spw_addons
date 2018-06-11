@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+
+
+
+        <record model="ir.ui.view" id="project_timesheet_spw">
+            <field name="name">project_timesheet.spw</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited" />
+            <field name="arch" type="xml">
+                <field name="tag_ids" position="after">
+                    <field name="hourly_rate_task"/>
+                    <field name="task_type"/>
+                </field>
+                 <field name="timesheet_ids" position="attributes">
+                    <attribute name="context">{'default_project_id': project_id,'default_my_taks_id': id}</attribute>
+                 </field>
+
+                <field name="unit_amount" position="before">
+                    <field name="task_type" string="專案類型"/>
+                </field>
+
+                <field name="unit_amount" position="after">
+                    <field name="hourly_rate_timesheet" string="鐘點"/>
+                    <field name="hourly_rate_timesheet_total" string="鐘點小計"/>
+                    <field name="report_date" string="報告繳交日"/>
+                </field>
+            </field>
+        </record>
+
+
+
+
+
+        <record model="ir.ui.view" id="spw_task_type">
+            <field name="name">SPW Task Type</field>
+            <field name="model">spw.tasks.type</field>
+            <field name="arch" type="xml">
+                <tree string="Task Type" editable="bottom">
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+            <record model="ir.actions.act_window" id="spw_action_window">
+              <field name="name">Task Type</field>
+              <field name="res_model">spw.tasks.type</field>
+              <field name="view_mode">tree</field>
+            </record>
+
+        <menuitem action="spw_action_window" id="menu_spw_task_type" name="Task Type" parent="project.menu_project_config" sequence="10"/>
+
+
+    </data>
+</odoo>
